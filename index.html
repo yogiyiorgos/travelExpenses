@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel='icon' type='image/svg+xml' href='favicon.svg' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <link rel='stylesheet' href='style.css' />
+  <title>Travel Expenses Tracker</title>
+</head>
+
+<body>
+  <h2>Travel Expenses Tracker</h2>
+
+  <div class='container'>
+    <h4>Balance</h4>
+    <h1 data-balance>€0.00</h1>
+
+    <div class='inc-exp-container'>
+      <div>
+        <h4>Expense</h4>
+        <p class='money minus' data-money-minus>-0.00</p>
+      </div>
+      <div>
+        <h4>Reimbursement</h4>
+        <p class='money plus' data-money-plus>+0.00</p>
+      </div>
+    </div>
+
+    <h3>Add new transaction</h3>
+    <form data-form>
+      <div>
+        <label for='text'>Date</label>
+        <input type='date' data-date />
+      </div>
+      <div>
+        <label for='amount'>Amount</label>
+        <input type='number' placeholder='Enter amount...' data-amount />
+      </div>
+      <button class='btn'>Add transaction</button>
+    </form>
+  </div>
+
+  <h3>History</h3>
+  <ul class='list' data-list>
+    <li>
+      Cash <span>-€400</span><button>x</button>
+    </li>
+  </ul>
+
+  <script src='script.js'></script>
+</body>
+
+</html>
