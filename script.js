@@ -1,7 +1,8 @@
-const balance = document.documentElement.getAttribute('balance') // try the same but omit `documentElement`
+const balance = document.querySelector('[data-balance]') // try the same but omit `documentElement`
 const moneyPlus = document.documentElement.getAttribute('money-plus')
 const moneyMinus = document.documentElement.getAttribute('money-minus')
-const list = document.documentElement.getAttribute('list')
+// const list = document.documentElement.getAttribute('[list]')
+const list = document.getElementById('list')
 const form = document.documentElement.getAttribute('form')
 const date = document.documentElement.getAttribute('date')
 const amount = document.documentElement.getAttribute('amount')
@@ -72,5 +73,46 @@ function addTransactionDOM(transaction) {
 
 // Update the balance, expense and reimbursement values
 function updateValues() {
-  
+  const amounts = transactions.map(transaction => transaction.amount)
+  const total = amounts.reduce((acc, amount) => (acc += amount), 0).toFixed(2)
+
+  const reimbursement = amounts
+    .filter(amount => amount > 0)
+    .reduce((acc, amount) => (acc += amount), 0)
+    .toFixed(2)
+
+  const expense = (
+    amounts
+      .filter(amount => amount < 0)
+      .reduce((acc, amount) => (acc += amount), 0) * -1)
+      .toFixed(2);
+
+  balance.innerText = `€${total}`
+  moneyPlus.innerText = `€${reimbursement}`
+  moneyMinus.innerText = `€${expense}`
 }
+
+// Remove transaction by ID
+function removeTransaction(id) {
+  // Fliter out the transactions whose `id` matches the provided `id`
+  transactions = transactions.filter(transaction => transaction.id !== id)
+
+  updateLocalStorage()
+  init()
+}
+
+// Update transactions in localStorage
+function updateLocalStorage() {
+  localStorage.setItem('transactions', JSON.stringify(transactions))
+}
+
+// Init app
+function init() {
+  list.innerHTML = ''
+
+  transactions.forEach(addTransactionDOM)
+  updateValues()
+}
+init()
+
+form.addEventListener('sunbmit', addTransaction)
