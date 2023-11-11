@@ -6,6 +6,10 @@
   <link rel='icon' type='image/svg+xml' href='favicon.svg' />
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   <link rel='stylesheet' href='style.css' />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Travel Expenses Tracker</title>
 </head>
 
@@ -14,28 +18,28 @@
 
   <div class='container'>
     <h4>Balance</h4>
-    <h1 data-balance>€0.00</h1>
+    <h1 id='balance' data-balance>€0.00</h1>
 
     <div class='inc-exp-container'>
       <div>
         <h4>Expense</h4>
-        <p class='money minus' data-money-minus>-0.00</p>
+        <p class='money minus' id='money_minus' data-money-minus>-0.00</p>
       </div>
       <div>
         <h4>Reimbursement</h4>
-        <p class='money plus' data-money-plus>+0.00</p>
+        <p class='money plus' id='money_plus' data-money-plus>+0.00</p>
       </div>
     </div>
 
     <h3>Add new transaction</h3>
-    <form data-form>
+    <form id='form' data-form>
       <div>
         <label for='text'>Date</label>
-        <input type='date' data-date />
+        <input type='date' id='text' data-date />
       </div>
       <div>
         <label for='amount'>Amount</label>
-        <input type='number' placeholder='Enter amount...' data-amount />
+        <input type='number' placeholder='Enter amount...' id='amount' data-amount />
       </div>
       <button class='btn'>Add transaction</button>
     </form>
